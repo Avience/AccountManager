@@ -1,0 +1,1 @@
+# AltManager Placeholder Repository
