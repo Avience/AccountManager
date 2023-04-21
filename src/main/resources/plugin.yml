@@ -1,0 +1,4 @@
+name: AccountManager
+version: '${project.version}'
+main: org.avience.accountmanager.AccountManager
+api-version: 1.19
