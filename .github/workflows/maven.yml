@@ -30,4 +30,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Upload a Build Artifact
-      uses: actions/upload-artifacts@v3.1.2
+      uses: actions/upload-artifacts@v3.1.2 #https://github.com/actions/upload-artifact/releases
+      with:
+        name: Jar
+        path: jar/builds/AccountManager.jar
