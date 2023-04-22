@@ -31,6 +31,3 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Upload a Build Artifact
       uses: actions/upload-artifacts@v3.1.2
-      with:
-        name: AccountManager
-        path: target/AccountManager.jar
