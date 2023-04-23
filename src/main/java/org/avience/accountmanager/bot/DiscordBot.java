@@ -8,7 +8,6 @@ public class DiscordBot {
     public static void main(String[] args) {
         Dotenv dotenv = Dotenv.load();
         String botToken = dotenv.get("DISCORD_TOKEN");
-        System.out.println(botToken);
         JDA jda = JDABuilder.createDefault(botToken).build();
     }
 }
