@@ -1,0 +1,6 @@
+#
+#     Account Manager Configuration File
+#     Created with love, Avience Development Team
+#
+# DiscordBotToken -> the token for the discord bot used, found on your discord developer portal
+DiscordBotToken: "token"

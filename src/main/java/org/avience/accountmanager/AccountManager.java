@@ -1,21 +1,29 @@
 package org.avience.accountmanager;
 
+import net.dv8tion.jda.api.JDA;
 import org.avience.accountmanager.bot.DiscordBot;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AccountManager extends JavaPlugin {
-
-    public static void main(String[] args) {
-    }
+    private static AccountManager instance;
+    private static DiscordBot bot;
 
     @Override
     public void onEnable() {
-        // Plugin startup logic
-        DiscordBot bot = new DiscordBot();
+        instance = this;
+        saveDefaultConfig();
+        bot = new DiscordBot(instance);
     }
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+    }
+
+    public static AccountManager getInstance() {
+        return instance;
+    }
+
+    public static JDA getBot(){
+        return bot.getJDA();
     }
 }
