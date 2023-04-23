@@ -1,5 +1,6 @@
 package org.avience.accountmanager;
 
+import org.avience.accountmanager.bot.DiscordBot;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AccountManager extends JavaPlugin {
@@ -10,7 +11,7 @@ public final class AccountManager extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-
+        DiscordBot bot = new DiscordBot();
     }
 
     @Override
