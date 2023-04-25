@@ -6,7 +6,9 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.exceptions.InvalidTokenException;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.avience.accountmanager.AccountManager;
 import org.avience.accountmanager.bot.commands.TestCommands;
 import org.avience.accountmanager.bot.listeners.EventListener;
@@ -27,6 +29,8 @@ public class DiscordBot {
                     .enableIntents(GatewayIntent.MESSAGE_CONTENT)
                     .setActivity(Activity.playing("Avience"))
                     //.setMemberCachePolicy(MemberCachePolicy.ALL) //caches members with lazy loading, not currently needed
+                    //.setChunkingFilter(ChunkingFilter.ALL) // caches EVERYTHING at once, not lazy loading, memory intensive but necessary sometimes
+                    //.enableCache(CacheFlag.) //put in what you want to cache
                     .build();
         }
         catch (InvalidTokenException e){
