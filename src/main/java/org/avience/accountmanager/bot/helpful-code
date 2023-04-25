@@ -1,0 +1,9 @@
+# replies with the user's nickname if they have one, otherwise replies with their username
+
+if (event.getMember().getNickname() == null) { // if the user doesnt have a nickname
+    String username = event.getUser().getName();
+    event.reply(username).queue();
+} else { // if the user has a nickname
+    String nickname = event.getMember().getNickname();
+    event.reply(nickname).queue();
+}

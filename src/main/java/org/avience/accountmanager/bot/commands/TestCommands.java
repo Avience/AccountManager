@@ -17,10 +17,20 @@ public class TestCommands extends ListenerAdapter {
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         String command = event.getName();
         if (command.equals("ping")) { // command /ping
-            String userName = event.getUser().getName(); //.getName gets name, .getID gets user#0000
-            event.reply(userName + " pong").queue();
+
+            if (event.getMember().getNickname() == null) { // if the user doesnt have a nickname
+                String username = event.getUser().getName(); //.getName() gets name, .getID() gets user#0000
+                event.reply(username + " pong").queue();
+            } else { // if the user has a nickname
+                String nickname = event.getMember().getNickname();
+                event.reply(nickname + " pong").queue();
+            }
             // if command with .reply() takes longer than 3 seconds to execute, discord will throw an error or smth
             // use .deferReply to make discord wait for commands that take a long time to execute
+        }
+
+        else if (command.equals("whitelist")) { // experiment with deferreply(), THE COMMANDS WILL NOT BE AN IF ELSE STATEMENTS IN PROD
+
         }
     }
 
@@ -31,15 +41,15 @@ public class TestCommands extends ListenerAdapter {
         List<CommandData> commandData = new ArrayList<>();
         commandData.add(Commands.slash("ping", "ping pong"));
 
-        // you can put all the commands in with a list (current implementation), or you can put them in individually, separated by commas
-        event.getGuild().updateCommands().addCommands(commandData).queue();
 
         /**
-        if (event.getGuild().getIdLong() == 1099013320272527420L) {
-            //you can register special commands to a certain server
-            // 1099013320272527420 is the Account Manager server but you could put Avience's id in there
-        }
+         if (event.getGuild().getIdLong() == 1099013320272527420L) {
+         //you can register special commands to a certain server
+         // 1099013320272527420 is the Account Manager server but you could put Avience's id in there
+         }
          */
+        // you can put all the commands in with a list (current implementation), or you can put them in individually, separated by commas
+        event.getGuild().updateCommands().addCommands(commandData).queue();
     }
     // NOT FINAL IMPLEMENTATION!!!!! WILL MAKE A COMMAND MANAGER SYSTEM
     // THIS SYSTEM IS FOR TESTING ONLY
