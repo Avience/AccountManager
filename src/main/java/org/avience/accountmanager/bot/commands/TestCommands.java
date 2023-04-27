@@ -7,10 +7,19 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
+import org.avience.accountmanager.AccountManager;
+import org.avience.accountmanager.ConsoleSender;
+import org.avience.accountmanager.bot.DiscordBot;
+import org.bukkit.Bukkit;
+import org.bukkit.command.CommandException;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class TestCommands extends ListenerAdapter {
     @Override
@@ -34,20 +43,27 @@ public class TestCommands extends ListenerAdapter {
             //BotUtils botUtils = new BotUtils()
             //boolean yay = event.getMember().hasR
 
-            long CoOwnerRoleID = 1099014264775245874L;
-            //boolean hasRole;
-            Role role = event.getGuild().getRoleById(CoOwnerRoleID); //will return null if command is run in a server besides account manager test server
-            if (event.getMember().getRoles() == null || event.getMember().getRoles().contains(role) == false) {
-                //hasRole = false;
-                event.reply(event.getUser().getName() + " can't use the secret command!").queue();
-            } else {
-                //hasRole = event.getMember().getRoles().contains(role);
-                //System.out.println();
-                event.reply(event.getUser().getName() + " has the " + role.getName() + " role and can use the secret command!").queue();
+            //Below is how I was reading in data from the config.yml, but there is probably a better way -rob
+            List<?> roleIDs = AccountManager.getInstance().getConfig().getList("SlashWhitelistAllowedRoleIDs"); //make an unspecified wildcard list
+            List<Role> roles = new ArrayList<>();
+            boolean hasRole = false;
+
+            for(int i = 0; i < roleIDs.size(); i++){
+                roles.add(event.getGuild().getRoleById((long) roleIDs.get(i))); //create a list of roles, attempt to cast values of roleID list to longs
             }
 
-
-
+            for(Role r : roles){
+                if(event.getMember().getRoles().contains(r)){
+                    hasRole = true;
+                    break;
+                }
+            }
+            if (hasRole) {
+                event.reply(event.getUser().getName() + " has the right role(s) and can use the secret command!").queue();
+                ConsoleSender.sendCommand("say Secret Success!");
+            } else {
+                event.reply(event.getUser().getName() + " can't use the secret command!").queue();
+            }
 
             // janky ass thingy that is a role-specific command - doesnt work
             /*boolean hasRole = false;

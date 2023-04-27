@@ -13,15 +13,12 @@ import org.avience.accountmanager.AccountManager;
 import org.avience.accountmanager.bot.commands.TestCommands;
 import org.avience.accountmanager.bot.listeners.EventListener;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 
 public class DiscordBot {
     private JDA jda;
 
     public DiscordBot(AccountManager plugin){
-        FileConfiguration config = plugin.getConfig();
-        String botToken = config.getString("DiscordBotToken");
-        plugin.saveConfig();
+        String botToken = plugin.getConfig().getString("DiscordBotToken");
         try {
             //enabling the intent MESSAGE_CONTENT allows it to get the content of messages sent or something idk i dont really understand
             //see https://jda.wiki/using-jda/gateway-intents-and-member-cache-policy/
@@ -38,8 +35,9 @@ public class DiscordBot {
         }
 
         //register listener (may or may not use in final bot, depends on if it has a function thats not a slash command
-        jda.addEventListener(new EventListener(), new TestCommands());
-
+        if(jda != null){
+            jda.addEventListener(new EventListener(), new TestCommands());
+        }
     }
 
     public JDA getJDA(){
