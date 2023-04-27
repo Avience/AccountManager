@@ -4,3 +4,13 @@
 #
 # DiscordBotToken -> the token for the discord bot used, found on your discord developer portal
 DiscordBotToken: "token"
+
+# uhhhhhh if u find a way to read these in lmk...
+SlashWhitelistAllowedRoleIDs:
+  - 1099014264775245874 # Co-owner (Account Manager)
+  - 1082766305070960730 # Owner (Avience)
+  - 517167620089315338 # Paladinus Primoris (Avience)
+  - 517871520597409814 # Paladins (Avience)
+  - 999697940123746365 # Community Manager (Avience)
+  - 517330988934889473 # Paladin (Avience)
+  - 517165622711287859 # Elder (Avience)
