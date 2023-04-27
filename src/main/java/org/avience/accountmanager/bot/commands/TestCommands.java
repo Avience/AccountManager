@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestCommands extends ListenerAdapter {
-
     @Override
     public void onSlashCommandInteraction(@NotNull SlashCommandInteractionEvent event) {
         String command = event.getName();
@@ -42,7 +41,7 @@ public class TestCommands extends ListenerAdapter {
         commandData.add(Commands.slash("ping", "ping pong"));
 
 
-        /**
+        /*
          if (event.getGuild().getIdLong() == 1099013320272527420L) {
          //you can register special commands to a certain server
          // 1099013320272527420 is the Account Manager server but you could put Avience's id in there
