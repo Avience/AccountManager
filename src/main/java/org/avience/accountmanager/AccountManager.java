@@ -17,6 +17,7 @@ public final class AccountManager extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        bot.getJDA().shutdown();
     }
 
     public static AccountManager getInstance() {

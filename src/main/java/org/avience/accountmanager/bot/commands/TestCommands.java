@@ -9,17 +9,10 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import org.avience.accountmanager.AccountManager;
 import org.avience.accountmanager.ConsoleSender;
-import org.avience.accountmanager.bot.DiscordBot;
-import org.bukkit.Bukkit;
-import org.bukkit.command.CommandException;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class TestCommands extends ListenerAdapter {
     @Override
