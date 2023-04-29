@@ -7,3 +7,17 @@ if (event.getMember().getNickname() == null) { // if the user doesnt have a nick
     String nickname = event.getMember().getNickname();
     event.reply(nickname).queue();
 }
+
+
+
+# restricts an action to a certain role or group of roles
+
+long CoOwnerRoleID = 1099014264775245874L;
+Role role = event.getGuild().getRoleById(CoOwnerRoleID); //will return null if command is run in a server besides account manager test server
+if (event.getMember().getRoles() == null || event.getMember().getRoles().contains(role) == false) {
+    event.reply(event.getUser().getName() + " can't use the secret command!").queue();
+} else {
+    event.reply(event.getUser().getName() + " has the " + role.getName() + " role and can use the secret command!").queue();
+}
+
+# read in config.yml and get a specific element

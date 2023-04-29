@@ -31,22 +31,35 @@ public class TestCommands extends ListenerAdapter {
             // use .deferReply to make discord wait for commands that take a long time to execute
         }
 
-        else if (command.equals("secret")) { // experiment with deferreply(), THE COMMANDS WILL NOT BE AN IF ELSE STATEMENTS IN PROD
-
-            //BotUtils botUtils = new BotUtils()
-            //boolean yay = event.getMember().hasR
+        else if (command.equals("secret")) { // THE COMMANDS WILL NOT BE AN IF ELSE STATEMENTS IN PROD
 
             //Below is how I was reading in data from the config.yml, but there is probably a better way -rob
-            List<?> roleIDs = AccountManager.getInstance().getConfig().getList("SlashWhitelistAllowedRoleIDs"); //make an unspecified wildcard list
+
+            // uncomment the segment below if using the server to run
+            /*List<?> roleIDs = AccountManager.getInstance().getConfig().getList("SlashWhitelistAllowedRoleIDs"); //make an unspecified wildcard list
+            List<Role> roles = new ArrayList<>();*/
+
+            // uncomment the segment below if using main method to run (testing)
+            List<Long> roleIDs = new ArrayList<>();
             List<Role> roles = new ArrayList<>();
+            roleIDs.add(1099014264775245874L);
+            roleIDs.add(1082766305070960730L);
+            roleIDs.add(517167620089315338L);
+            roleIDs.add(517871520597409814L);
+            roleIDs.add(999697940123746365L);
+            roleIDs.add(517330988934889473L);
+            roleIDs.add(517165622711287859L);
+            roleIDs.add(1101141794286215228L);
+
             boolean hasRole = false;
 
-            for(int i = 0; i < roleIDs.size(); i++){
+            // probably possible to use for-each
+            for (int i = 0; i < roleIDs.size(); i++) { // do NOT remove the cast to long
                 roles.add(event.getGuild().getRoleById((long) roleIDs.get(i))); //create a list of roles, attempt to cast values of roleID list to longs
             }
 
-            for(Role r : roles){
-                if(event.getMember().getRoles().contains(r)){
+            for(Role r : roles) {
+                if (event.getMember().getRoles().contains(r)) {
                     hasRole = true;
                     break;
                 }
@@ -57,21 +70,6 @@ public class TestCommands extends ListenerAdapter {
             } else {
                 event.reply(event.getUser().getName() + " can't use the secret command!").queue();
             }
-
-            // janky ass thingy that is a role-specific command - doesnt work
-            /*boolean hasRole = false;
-            List<Role> memberRoles = event.getMember().getRoles();
-            //List<Long> memberRoleIDs;
-            for (Role role : memberRoles) {
-                 if (role.getIdLong() == 1099014264775245874L) { //role.getid equals the admin role
-                     hasRole = true;
-                 }
-            }
-            if (hasRole) {
-                event.reply(event.getUser().getName() + " has the " + "[role]" + " role and can use the secret command!");
-            }*/
-            //if (event.getMember().)
-            //event.getMember().getRoles()
         }
     }
 
