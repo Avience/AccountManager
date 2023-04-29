@@ -10,6 +10,7 @@ import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import org.avience.accountmanager.AccountManager;
+import org.avience.accountmanager.bot.commands.CommandManager;
 import org.avience.accountmanager.bot.commands.TestCommands;
 import org.avience.accountmanager.bot.listeners.EventListener;
 import org.bukkit.Bukkit;
@@ -36,7 +37,7 @@ public class DiscordBot {
 
         //register listener (may or may not use in final bot, depends on if it has a function thats not a slash command
         if(jda != null){
-            jda.addEventListener(new EventListener(), new TestCommands());
+            jda.addEventListener(new EventListener(), new CommandManager()); //CHANGED TO TEST COMMANDMANAGER
         }
     }
 
@@ -59,6 +60,6 @@ public class DiscordBot {
 
         //idk if redoing the jdabuilder and addeventlistener in the main method (its in the constructor too) messes anything up but it hasnt so far to my knowledge
         //it shouldnt i think
-        jda.addEventListener(new EventListener(), new TestCommands());
+        jda.addEventListener(new EventListener(), new CommandManager()); //CHANGED TO TEST COMMANDMANAGER
     }
 }
