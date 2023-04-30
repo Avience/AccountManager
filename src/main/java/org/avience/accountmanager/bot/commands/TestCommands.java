@@ -33,6 +33,10 @@ public class TestCommands extends ListenerAdapter {
 
         else if (command.equals("secret")) { // THE COMMANDS WILL NOT BE AN IF ELSE STATEMENTS IN PROD
 
+            //event.deferReply().queue();
+            //if you want to have the deferred reply be ephemeral, you have to do .setEphemeral(true) on .deferReply
+            //if you do it on the event.getHook().sendMessage(), it WILL NOT WORK!!
+
             //Below is how I was reading in data from the config.yml, but there is probably a better way -rob
 
             // uncomment the segment below if using the server to run
@@ -40,6 +44,7 @@ public class TestCommands extends ListenerAdapter {
             List<Role> roles = new ArrayList<>();*/
 
             // uncomment the segment below if using main method to run (testing)
+
             List<Long> roleIDs = new ArrayList<>();
             List<Role> roles = new ArrayList<>();
             roleIDs.add(1099014264775245874L);
@@ -58,17 +63,19 @@ public class TestCommands extends ListenerAdapter {
                 roles.add(event.getGuild().getRoleById((long) roleIDs.get(i))); //create a list of roles, attempt to cast values of roleID list to longs
             }
 
-            for(Role r : roles) {
+            for (Role r : roles) {
                 if (event.getMember().getRoles().contains(r)) {
                     hasRole = true;
                     break;
                 }
             }
             if (hasRole) {
-                event.reply(event.getUser().getName() + " has the right role(s) and can use the secret command!").queue();
+                event.reply(event.getUser().getName() + " has the right role(s) and can use the secret command!").setEphemeral(true).queue();
                 ConsoleSender.sendCommand("say Secret Success!");
             } else {
-                event.reply(event.getUser().getName() + " can't use the secret command!").queue();
+                event.reply(event.getUser().getName() + " can't use the secret command!").setEphemeral(true).queue();
+                // deferreply example
+                // event.getHook().sendMessage(event.getUser().getName() + " can't use the secret command!").queue();
             }
         }
     }
