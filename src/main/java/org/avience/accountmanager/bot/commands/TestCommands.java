@@ -66,7 +66,7 @@ public class TestCommands extends ListenerAdapter {
             }
             if (hasRole) {
                 event.reply(event.getUser().getName() + " has the right role(s) and can use the secret command!").queue();
-                new ConsoleSender().sendCommand("say Secret Success!");
+                ConsoleSender.sendCommand("say Secret Success!");
             } else {
                 event.reply(event.getUser().getName() + " can't use the secret command!").queue();
             }
