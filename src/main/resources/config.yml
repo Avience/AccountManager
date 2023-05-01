@@ -4,6 +4,7 @@
 #
 # DiscordBotToken -> the token for the discord bot used, found on your discord developer portal
 DiscordBotToken: "token"
+LogFilePath: "pathToLogFileHere"
 # Test Values Below
 SlashWhitelistAllowedRoleIDs:
   - 1099014264775245874 # Co-owner (Account Manager)

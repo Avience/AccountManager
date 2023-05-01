@@ -1,7 +1,7 @@
 package org.avience.accountmanager;
 
-import net.dv8tion.jda.api.JDA;
 import org.avience.accountmanager.bot.DiscordBot;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AccountManager extends JavaPlugin {
@@ -22,9 +22,5 @@ public final class AccountManager extends JavaPlugin {
 
     public static AccountManager getInstance() {
         return instance;
-    }
-
-    public static JDA getBot(){
-        return bot.getJDA();
     }
 }
